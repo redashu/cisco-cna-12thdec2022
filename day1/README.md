@@ -20,5 +20,23 @@
 
 <img src="t1t2.png">
 
+## Introduction to cloud computing delivery model services 
+
+<img src="del.png">
+
+### understanding  delivery model in detail
+
+<img src="del1.png">
+
+### public vs private cloud deployment models 
+
+<img src="pub.png">
+
+---
+
+### private 
+
+<img src="pri.png">
+
 
 
