@@ -38,5 +38,18 @@
 
 <img src="pri.png">
 
+## users / accounts in cloud env
+
+<img src="u.png">
+
+## Understanding Cloud Regions 
+
+<img src="region.png">
+
+### understanding av zones under particular region 
+
+<img src="avz.png">
+
+
 
 
