@@ -1,1 +1,4 @@
-# cisco-cna-12thdec2022
+# training plan 
+
+<img src="plan.png">
+
