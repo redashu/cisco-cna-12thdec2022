@@ -143,4 +143,62 @@ Server:
 
 <img src="cont1.png">
 
+## web app containerization 
+
+### lets take sample code 
+
+```
+git clone https://github.com/schoolofdevops/html-sample-app.git
+   12  ls
+   13  git clone https://github.com/yenchiah/project-website-template.git
+```
+
+### choose any application from above and Introduce dockerfile in it 
+
+### Dockerfile -- content 
+```
+FROM nginx 
+# we are refering to standard docker image 
+LABEL name=ashutoshh
+LABEL email=ashutoshh@linux.com 
+COPY . /usr/share/nginx/html/
+```
+
+### lets build this code  + dockerfile --into a container image 
+
+```
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ ls
+html-sample-app  project-website-template
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ ls  html-sample-app/
+assets  Dockerfile  elements.html  generic.html  html5up-phantom.zip  httpd.dockerfile  images  index.html  LICENSE.txt  README.txt
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker build  -t  ashuapp:imgv1  html-sample-app/ 
+Sending build context to Docker daemon   3.63MB
+Step 1/4 : FROM nginx
+latest: Pulling from library/nginx
+025c56f98b67: Pull complete 
+ca9c7f45d396: Pull complete 
+ed6bd111fc08: Pull complete 
+e25b13a5f70d: Pull complete 
+9bbabac55ab6: Pull complete 
+e5c9ba265ded: Pull complete 
+Digest: sha256:ab589a3c466e347b1c0573be23356676df90cd7ce2dbf6ec332a5f0a8b5e59db
+Status: Downloaded newer image for nginx:latest
+ ---> ac8efec875ce
+Step 2/4 : LABEL name=ashutoshh
+ ---> Running in 0a32d7b6cbf0
+Removing intermediate container 0a32d7b6cbf0
+ ---> f1626d1767c0
+Step 3/4 : LABEL email=ashutoshh@linux.com
+ ---> Running in 5e0bedbcce4e
+Removing intermediate container 5e0bedbcce4e
+ ---> d0aba755f0df
+Step 4/4 : COPY . /usr/share/nginx/html/
+ ---> 92768a90d00b
+Successfully built 92768a90d00b
+Successfully tagged ashuapp:imgv1
+```
+
+
+
 
