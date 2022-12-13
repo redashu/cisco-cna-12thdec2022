@@ -104,3 +104,39 @@ Changing password for user rameez.
 passwd: all authentication tokens updated successfully.
 ```
 
+### access docker from non root user 
+
+```
+[ashu@ip-172-31-31-82 ~]$ whoami
+ashu
+[ashu@ip-172-31-31-82 ~]$ docker  version 
+Client:
+ Version:           20.10.17
+ API version:       1.41
+ Go version:        go1.18.6
+ Git commit:        100c701
+ Built:             Wed Sep 28 23:10:17 2022
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+
+Server:
+ Engine:
+  Version:          20.10.17
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.18.6
+  Git commit:       a89b842
+  Built:            Wed Sep 28 23:10:55 2022
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.6.8
+  GitCommit:        9cd3357b7fd7218e4aec3eae239db1f68a5a6ec6
+ runc:
+  Version:          1.1.4
+  GitCommit:        5fd4c4d144137e991c4acebb2146ab1483a97925
+ docker-init:
+
+```
+
+
