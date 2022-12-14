@@ -47,4 +47,18 @@ nginx        latest    3964ce7b8458   4 hours ago      142MB
 [ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
 ```
 
+## to create containers -- we need things 
+
+<img src="need.png">
+
+### creating container 
+
+```
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker run -d --name ashuappc1 -p 1234:80  ashuwebapp:1.0 
+e11bc8c63a2586da61ec2061992f01b83eb42a8603e6f722a129aea774b18991
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker ps
+CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS        PORTS                                   NAMES
+e11bc8c63a25   ashuwebapp:1.0   "/docker-entrypoint.…"   3 seconds ago   Up 1 second   0.0.0.0:1234->80/tcp, :::1234->80/tcp   ashuappc1
+```
+
 
