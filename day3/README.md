@@ -252,5 +252,54 @@ ashuweb-uic1        "/docker-entrypoint.…"   ashuapp-ui          running      
 [ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
 ```
 
+### adding db service in compose 
+
+```
+version: '3.8'
+services:
+  ashuapp-db: # database service 
+    image: mysql
+    container_name: ashudbc1
+    environment:
+      MYSQL_ROOT_PASSWORD: "CiscoDb@098"
+  ashuapp-ui:
+    image: ashuwebapp:uiv1 
+    build: # to build image what we need 
+      context: html-sample-app
+      dockerfile: Dockerfile
+    container_name: ashuweb-uic1  # name of container 
+    ports: # implementing port forwarding 
+    - "1234:80"
+  
+```
+
+### lets run it again 
+
+```
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ ls
+docker-compose.yaml  html-sample-app  project-website-template
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker-compose up -d
+[+] Running 12/12
+ ⠿ ashuapp-db Pulled                                                                                                              9.6s
+   ⠿ 0ed027b72ddc Pull complete                                                                                                   3.1s
+   ⠿ 0296159747f1 Pull complete                                                                                                   3.2s
+   ⠿ 3d2f9b664bd3 Pull complete                                                                                                   3.3s
+   ⠿ df6519f81c26 Pull complete                                                                                                   3.5s
+   ⠿ 36bb5e56d458 Pull complete                                                                                                   3.6s
+   ⠿ 054e8fde88d0 Pull complete                                                                                                   3.6s
+   ⠿ f2b494c50c7f Pull complete                                                                                                   5.2s
+   ⠿ 132bc0d471b8 Pull complete                                                                                                   5.3s
+   ⠿ 135ec7033a05 Pull complete                                                                                                   9.3s
+   ⠿ 5961f0272472 Pull complete                                                                                                   9.3s
+   ⠿ 75b5f7a3d3a4 Pull complete                                                                                                   9.4s
+[+] Running 2/2
+ ⠿ Container ashudbc1      Started                                                                                                4.1s
+ ⠿ Container ashuweb-uic1  Running                                                                                                0.0s
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker-compose  ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+ashudbc1            "docker-entrypoint.s…"   ashuapp-db          running             3306/tcp, 33060/tcp
+ashuweb-uic1        "/docker-entrypoint.…"   ashuapp-ui          running             0.0.0.0:1234->80/tcp, :::1234->80/tcp
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
+```
 
 
