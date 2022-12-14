@@ -169,4 +169,14 @@ NETWORK ID     NAME      DRIVER    SCOPE
                 "IPv6Address": ""
 ```
 
+### more detail understanding 
+
+<img src="dd.png">
+
+### port mapping 
+
+<img src="portm.png">
+
+
+
 
