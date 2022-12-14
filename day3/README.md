@@ -302,4 +302,45 @@ ashuweb-uic1        "/docker-entrypoint.…"   ashuapp-ui          running      
 [ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
 ```
 
+### finally -- ashu-app -- with 3 microsevices -- frontend. / backend / db 
 
+```
+version: '3.8'
+services:
+  ashuapp-backend: # creating backend service 
+    image: adminer
+    container_name: ashuappback1
+    ports:
+    - "1199:8080"
+  ashuapp-db: # database service 
+    image: mysql
+    container_name: ashudbc1
+    environment: # setting password for mysql Db container 
+      MYSQL_ROOT_PASSWORD: "CiscoDb@098"
+  ashuapp-ui:
+    image: ashuwebapp:uiv1 
+    build: # to build image what we need 
+      context: html-sample-app
+      dockerfile: Dockerfile
+    container_name: ashuweb-uic1  # name of container 
+    ports: # implementing port forwarding 
+    - "1234:80"
+  
+```
+
+
+### lets deploy it 
+
+```
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker-compose up -d
+[+] Running 3/3
+ ⠿ Container ashudbc1      Running                                                                                                0.0s
+ ⠿ Container ashuweb-uic1  Running                                                                                                0.0s
+ ⠿ Container ashuappback1  Started                                                                                                0.8s
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker-compose ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+ashuappback1        "entrypoint.sh docke…"   ashuapp-backend     running             0.0.0.0:1199->8080/tcp, :::1199->8080/tcp
+ashudbc1            "docker-entrypoint.s…"   ashuapp-db          running             3306/tcp, 33060/tcp
+ashuweb-uic1        "/docker-entrypoint.…"   ashuapp-ui          running             0.0.0.0:1234->80/tcp, :::1234->80/tcp
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
+```
