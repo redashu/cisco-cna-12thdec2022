@@ -177,6 +177,80 @@ NETWORK ID     NAME      DRIVER    SCOPE
 
 <img src="portm.png">
 
+## CAAS understanding 
+
+<img src="caas.png">
+
+### running micro services using compose 
+
+### file 
+
+```
+version: '3.8'
+services:
+  ashuapp-ui:
+    image: ashuwebapp:uiv1 
+    build: # to build image what we need 
+      context: html-sample-app
+      dockerfile: Dockerfile
+    container_name: ashuweb-uic1  # name of container 
+    ports: # implementing port forwarding 
+    - "1234:80"
+  
+```
+
+### run it 
+
+```
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ ls
+docker-compose.yaml  html-sample-app  project-website-template
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker-compose  up  -d 
+[+] Running 0/0
+ ⠿ ashuapp-ui Warning                                                                                                             0.1s
+[+] Building 4.9s (6/7)                                                                                                                
+ => [internal] load build definition from Dockerfile                                                                              0.0s
+ => => transferring dockerfile: 132B                                                                                              0.0s
+ => [internal] load .dockerignore                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/nginx:latest                                                                   0.3s
+ => [1/2] FROM docker.io/library/nginx@sha256:75263be7e5846fc69cb6c42553ff9c93d653d769b94917dbda71d42d3f3c00d3                    4.5s
+ => => resolve docker.io/library/nginx@sha256:75263be7e5846fc69cb6c42553ff9c93d653d769b94917dbda71d42d3f3c00d3                    0.0s
+ => => sha256:75263be7e5846fc69cb6c42553ff9c93d653d769b94917dbda71d42d3f3c00d3 1.86kB / 1.86kB                                    0.0s
+ => => sha256:d586384381a0e6834cef73d432b1486f0b86334cb92e54256def62dd403f82ab 1.57kB / 1.57kB                                    0.0s
+ => => sha256:cc9fb83608079826a2253ad790b97fbbabf255892662a404fc393cde628fc9be 627B / 627B                                        0.1s
+ => => sha256:defc9ba04d7ce5f07366e26ef7137cf13a79075c5e050706958385a14617b074 958B / 958B                                        0.1s
+ => => sha256:3964ce7b84589cf9bc585415741b642b7167229e0afde03f502f6c848ed3279d 7.65kB / 7.65kB                                    0.0s
+ => => sha256:025c56f98b679f70b7a54241917e56da7b59ab9d2defecc6ebdb0bf2750484bb 31.41MB / 31.41MB                                  1.2s
+ => => sha256:ec0f5d052824ff7c7ced18ba6f567d4aab54bb759541a2eee203f8963f5d9437 25.47MB / 25.47MB                                  0.7s
+ => => sha256:885556963dada8f21475e2b816fcc9086ef9417bcac857dd5c3c16280bc83b49 774B / 774B                                        0.2s
+ => => sha256:f12443e5c9f73965a80b47c0e843784149af7434e307a4a69978bba1dc97c7db 1.40kB / 1.40kB                                    0.2s
+ => => extracting sha256:025c56f98b679f70b7a54241917e56da7b59ab9d2defecc6ebdb0bf2750484bb                                         1.3s
+ => => extracting sha256:ec0f5d052824ff7c7ced18ba6f567d4aab54bb759541a2eee203f8963f5d9437                                         0.7s
+ => => extracting sha256:cc9fb83608079826a2253ad790b97fbbabf255892662a404fc393cde628fc9be                                         0.0s
+ => => extracting sha256:defc9ba04d7ce5f07366e26ef7137cf13a79075c5e050706958385a14617b074                                         0.0s
+ => => extracting sha256:885556963dada8f21475e2b816fcc9086ef9417bcac857dd5c3c16280bc83b49                                         0.0s
+ => => extracting sha256:f12443e5c9f73965a80b47c0e843784149af7434e307a4a69978bba1dc97c7db                                         0.0s
+ => [internal] load build context                                                                                                 0.1s
+ => => transferring context: 3.55MB                                                                                               0.1s
+ => [2/2] COPY .  /usr/share/nginx/html/                                                                                          0.5s
+ => exporting to image                                                                                                            0.1s
+ => => exporting layers                                                                                                           0.0s
+ => => writing image sha256:4c8bab2153831937646329253da44ce533f0c17447cea491bde964855503bddb                                      0.0s
+ => => naming to docker.io/library/ashuwebapp:uiv1                                                                                0.0s
+[+] Running 2/2
+ ⠿ Network ashu-microservices-apps_default  Created                                                                               0.0s
+ ⠿ Container ashuweb-uic1                   Started           
+```
+
+
+### listing 
+
+```
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ docker-compose  ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+ashuweb-uic1        "/docker-entrypoint.…"   ashuapp-ui          running             0.0.0.0:1234->80/tcp, :::1234->80/tcp
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
+```
 
 
 
