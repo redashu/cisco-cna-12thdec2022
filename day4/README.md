@@ -179,6 +179,10 @@ ashu-app-ui-rule   nginx   me.ashutoshh.in             80      6s
 [k8s-client@ip-172-31-31-82 ~]$ 
 ```
 
+## Introduction to Devops and CICD pipeline 
+
+<img src="cicd.png">
+
 
 
 
