@@ -91,6 +91,31 @@ ashu-ui-app   1/1     1            1           9s
 [k8s-client@ip-172-31-31-82 ~]$ 
 ```
 
+### scaling micro services container horizentally 
+
+```
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  scale deployment  ashu-ui-app   --replicas=3
+deployment.apps/ashu-ui-app scaled
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  get  deploy 
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+ashish-tes-app   1/1     1            1           10m
+ashu-ui-app      3/3     3            3           20m
+bhushan-ui       1/1     1            1           5m17s
+manish-ui-app    1/1     1            1           11m
+navneet-ui-app   1/1     1            1           14m
+niki-ui-app      1/1     1            1           18m
+sameer-app       1/1     1            1           4m2s
+vijay-ui-app1    1/1     1            1           5m32s
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  get  po -o wide
+NAME                              READY   STATUS    RESTARTS   AGE     IP               NODE                            NOMINATED NODE   READINESS GATES
+ashish-tes-app-99c5b5545-rsq9p    1/1     Running   0          10m     192.168.50.243   ip-192-168-58-97.ec2.internal   <none>           <none>
+ashu-ui-app-77bd9fdcf7-6wp5s      1/1     Running   0          20m     192.168.42.98    ip-192-168-58-97.ec2.internal   <none>           <none>
+ashu-ui-app-77bd9fdcf7-8k8fd      1/1     Running   0          13s     192.168.41.255   ip-192-168-58-97.ec2.internal   <none>           <none>
+ashu-ui-app-77bd9fdcf7-dndcn      1/1     Running   0          13s     192.168.7.193    ip-192-168-9-119.ec2.internal   <none>           <none>
+bhushan-ui-c78f9dc77-9kr4l        1/1     Running   0          5m27s   192.168.54.107   ip-192-168-58-97.ec2.internal   <none>           <none>
+```
+
+
 
 
 
