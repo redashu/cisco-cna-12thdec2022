@@ -62,6 +62,24 @@ uiv1: digest: sha256:9744988c8120279d646b7db5d0ab6c3a92437ddfacb478b8e753aa7b435
 Removing login credentials for https://index.docker.io/v1/
 ```
 
+### Cloud Nativ k8s servie by amazon -- EKS -- how to connect eks to deploy applications 
+
+<img src="eks1.png">
+
+### from VS code login to terminal 2 with user 
+
+```
+ashu@ip-172-31-31-82 ashu-microservices-apps]$ su - k8s-client 
+Password: 
+Last login: Thu Dec 15 06:27:38 UTC 2022 on pts/2
+[k8s-client@ip-172-31-31-82 ~]$ 
+[k8s-client@ip-172-31-31-82 ~]$ whoami
+k8s-client
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  version --client 
+Client Version: version.Info{Major:"1", Minor:"22+", GitVersion:"v1.22.15-eks-fb459a0", GitCommit:"be82fa628e60d024275efaa239bfe53a9119c2d9", GitTreeState:"clean", BuildDate:"2022-10-24T20:36:27Z", GoVersion:"go1.16.15", Compiler:"gc", Platform:"linux/amd64"}
+[k8s-client@ip-172-31-31-82 ~]$ 
+```
+
 
 
 
