@@ -115,6 +115,70 @@ ashu-ui-app-77bd9fdcf7-dndcn      1/1     Running   0          13s     192.168.7
 bhushan-ui-c78f9dc77-9kr4l        1/1     Running   0          5m27s   192.168.54.107   ip-192-168-58-97.ec2.internal   <none>           <none>
 ```
 
+### creating k8s internal LB for ui micro-service 
+
+```
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  get  deploy 
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+ashish-tes-app   1/1     1            1           117m
+ashu-ui-app      3/3     3            3           127m
+bhushan-ui       3/3     3            3           112m
+manish-ui-app    1/1     1            1           118m
+navneet-ui-app   3/3     3            3           121m
+niki-ui-app      3/3     3            3           125m
+sameer-app       3/3     3            3           111m
+vijay-ui-app1    3/3     3            3           112m
+[k8s-client@ip-172-31-31-82 ~]$ 
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  expose  deployment  ashu-ui-app  --name ashu-ui-interal-lb  --port 80  
+service/ashu-ui-interal-lb exposed
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  get service 
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+ashu-ui-interal-lb   ClusterIP   10.100.227.31   <none>        80/TCP    10s
+bhushan-lb           ClusterIP   10.100.81.228   <none>        80/TCP    6s
+kubernetes           ClusterIP   10.100.0.1      <none>        443/TCP   166m
+[k8s-client@ip-172-31-31-82 ~]$ 
+```
+
+### writing Ingress rules --
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ashu-app-ui-rule # change here 
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # name of ingress 
+  rules:
+  - host: me.ashutoshh.in # url of microservice 
+    http:
+      paths:
+      - path: / # home page 
+        pathType: Prefix
+        backend:
+          service:
+            name: ashu-ui-interal-lb # name of internal LB 
+            port:
+              number: 80
+```
+
+### lets deploy rules 
+
+```
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ ls
+ashu-ui-rule.yaml  docker-compose.yaml  html-sample-app  project-website-template
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ cp ashu-ui-rule.yaml   /tmp/
+[ashu@ip-172-31-31-82 ashu-microservices-apps]$ 
+
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  apply -f  /tmp/ashu-ui-rule.yaml 
+ingress.networking.k8s.io/ashu-app-ui-rule created
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  get  ingress
+NAME               CLASS   HOSTS             ADDRESS   PORTS   AGE
+ashu-app-ui-rule   nginx   me.ashutoshh.in             80      6s
+[k8s-client@ip-172-31-31-82 ~]$ 
+```
+
 
 
 
