@@ -80,6 +80,17 @@ Client Version: version.Info{Major:"1", Minor:"22+", GitVersion:"v1.22.15-eks-fb
 [k8s-client@ip-172-31-31-82 ~]$ 
 ```
 
+### creating deployment 
+
+```
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  create  deployment  ashu-ui-app --image=docker.io/dockerashu/ashuwebapp:uiv1 --port 80 
+deployment.apps/ashu-ui-app created
+[k8s-client@ip-172-31-31-82 ~]$ kubectl  get  deployment 
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-ui-app   1/1     1            1           9s
+[k8s-client@ip-172-31-31-82 ~]$ 
+```
+
 
 
 
